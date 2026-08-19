@@ -1,0 +1,1 @@
+type Level='DEBUG'|'INFO'|'WARN'|'ERROR'; export const log=(level:Level,event:string,meta:Record<string,unknown>={})=>{if(level==='DEBUG'&&import.meta.env.PROD)return; const entry={timestamp:new Date().toISOString(),level,event,...meta};(level==='ERROR'?console.error:level==='WARN'?console.warn:console.info)(entry)};

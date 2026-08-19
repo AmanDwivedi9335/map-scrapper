@@ -1,0 +1,1 @@
+import type {ExtensionMessage} from '../shared/messaging/messages';export function routeMessage(message:ExtensionMessage,sender:chrome.runtime.MessageSender){if(message.type==='SCRAPE_PROGRESS'||message.type==='SCRAPE_ERROR'||message.type==='JOB_FINISHED')chrome.runtime.sendMessage({...message,tabId:sender.tab?.id}).catch(()=>undefined)}

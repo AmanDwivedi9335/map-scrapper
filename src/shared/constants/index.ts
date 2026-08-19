@@ -1,0 +1,2 @@
+export const DEFAULT_SETTINGS={id:'app' as const,defaultLimit:250,defaultExportFormat:'xlsx' as const,visibleColumns:['name','primaryCategory','address','phone','website','rating','reviewCount'],exportColumns:['name','primaryCategory','address','phone','website','rating','reviewCount','latitude','longitude','googleMapsUrl','searchKeyword','searchLocation','scrapedAt'],emptyScrollRetryLimit:4,maxResultLimit:5000};
+export const SCROLL_WAIT_MS=1200;
