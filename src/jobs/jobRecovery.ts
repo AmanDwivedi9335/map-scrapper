@@ -1,0 +1,1 @@
+import {jobRepository} from '../storage/jobRepository';export async function recoverIncompleteJob(){const job=await jobRepository.unfinished();if(job?.status==='RUNNING'){job.status='PAUSED';job.pausedAt=new Date().toISOString();job.updatedAt=job.pausedAt;await jobRepository.save(job)}return job}

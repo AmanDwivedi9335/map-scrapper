@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Maps Lead Extractor",
+  "version": "1.0.0",
+  "description": "Extract and export business listings from your current Google Maps search.",
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.google.com/maps/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Open Maps Lead Extractor"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.google.com/maps/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

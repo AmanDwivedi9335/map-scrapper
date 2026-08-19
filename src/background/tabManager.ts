@@ -1,0 +1,1 @@
+export async function activeTab(){const [tab]=await chrome.tabs.query({active:true,currentWindow:true});return tab}export const isMapsUrl=(url?:string)=>!!url&&/^https:\/\/www\.google\.[^/]+\/maps/.test(url);

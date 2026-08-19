@@ -1,0 +1,1 @@
+import type {BusinessRecord} from '../shared/types/models';export const jsonBlob=(rows:BusinessRecord[],fields:string[])=>new Blob([JSON.stringify(rows.map(r=>Object.fromEntries(fields.map(f=>[f,r[f as keyof BusinessRecord]]))),null,2)],{type:'application/json'});

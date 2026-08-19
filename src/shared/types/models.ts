@@ -1,0 +1,7 @@
+export type ScrapeJobStatus='CREATED'|'RUNNING'|'PAUSED'|'COMPLETED'|'STOPPED'|'FAILED';
+export interface SearchContext {keyword?:string;location?:string;sourceUrl:string;rawQuery?:string}
+export interface BusinessRecord {id:string;jobId:string;name:string;primaryCategory?:string;categories?:string[];address?:string;city?:string;state?:string;postalCode?:string;country?:string;phone?:string;website?:string;rating?:number;reviewCount?:number;latitude?:number;longitude?:number;googleMapsUrl?:string;placeId?:string;openingHours?:string[];searchKeyword?:string;searchLocation?:string;source:'google_maps';scrapedAt:string;dedupeKey:string}
+export interface ScrapeJob {id:string;tabId?:number;status:ScrapeJobStatus;searchKeyword?:string;searchLocation?:string;sourceUrl:string;requestedLimit:number;discoveredCount:number;savedCount:number;duplicateCount:number;errorCount:number;startedAt?:string;pausedAt?:string;completedAt?:string;updatedAt:string;lastProcessedBusinessId?:string;currentBusiness?:string;error?:{code:string;message:string}}
+export type ExportFormat='csv'|'xlsx'|'json';
+export interface Settings {id:'app';defaultLimit:number;defaultExportFormat:ExportFormat;visibleColumns:string[];exportColumns:string[];emptyScrollRetryLimit:number;maxResultLimit:number}
+export interface ResultFilters {search:string;phone:'any'|'has'|'none';website:'any'|'has'|'none';hasAddress:boolean;minRating?:number;minReviews?:number;category?:string}

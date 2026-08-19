@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Maps Lead Extractor</title>
+  <rect width="64" height="64" rx="14" fill="#2563eb"/>
+  <path fill="#fff" d="M32 11c-9.4 0-17 7.6-17 17 0 12.4 17 27 17 27s17-14.6 17-27c0-9.4-7.6-17-17-17Zm0 24.5a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"/>
+</svg>

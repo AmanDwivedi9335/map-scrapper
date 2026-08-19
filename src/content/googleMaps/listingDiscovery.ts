@@ -1,0 +1,1 @@
+import {SELECTORS} from './selectors'; export function discoverListings(root:ParentNode=document){const seen=new Set<string>();return Array.from(root.querySelectorAll<HTMLAnchorElement>(SELECTORS.listing)).filter(a=>{const key=a.href;return key&&!seen.has(key)&&!!seen.add(key)})}
