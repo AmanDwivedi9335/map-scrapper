@@ -1,1 +1,1 @@
-import {routeMessage} from './messageRouter';chrome.runtime.onInstalled.addListener(()=>chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:true}));chrome.runtime.onMessage.addListener((m,s)=>routeMessage(m,s));
+chrome.runtime.onInstalled.addListener(()=>chrome.sidePanel.setPanelBehavior({openPanelOnActionClick:true}));
