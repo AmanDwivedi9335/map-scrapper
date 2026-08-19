@@ -1,6 +1,6 @@
-# Maps Lead Extractor — Phase 1
+# Maps Lead Extractor — Phase 3 foundation
 
-A privacy-first Chrome/Edge Manifest V3 side-panel extension that extracts businesses from the **current, manually initiated Google Maps search**. It progressively discovers feed cards, scrolls at a controlled rate, deduplicates within each job, persists to IndexedDB, and exports CSV, XLSX, or JSON. No lead data leaves the browser; there is no backend, enrichment, account automation, CAPTCHA handling, proxying, or stealth behavior.
+A privacy-first Chrome/Edge Manifest V3 side-panel extension that extracts businesses from the **current, manually initiated Google Maps search**. Local extraction and IndexedDB persistence remain independent of cloud availability. Phase 3 adds a PostgreSQL SaaS domain model, tenant-safe cloud import contracts, RBAC, plan entitlements, credit reservations, billing abstractions, account health, and resumable extension uploads. The Maps collector is intentionally still browser-only.
 
 ## Architecture
 
@@ -10,6 +10,9 @@ A privacy-first Chrome/Edge Manifest V3 side-panel extension that extracts busin
 - `src/jobs`, `src/storage`: validated lifecycle plus Dexie stores (`jobs`, `businesses`, `settings`). The compound unique index `[jobId+dedupeKey]` prevents duplicates per job.
 - `src/sidepanel`: React setup/progress, paginated results, combined filters, selection, previous jobs, settings and confirmed export/delete flows.
 - `src/export`, `src/deduplication`: independently tested serializers and identity normalization.
+- `src/saas`, `prisma`: multi-tenant domain policy and the commercial SaaS persistence model.
+- `src/extension/cloudClient.ts`: optional, chunked workspace sync with persisted recovery state.
+- `docs/phase3`: repository audit, security/retention decisions, deployment, and release gates.
 
 ## Development
 

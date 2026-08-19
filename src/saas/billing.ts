@@ -1,0 +1,5 @@
+import type {PlanCode} from './contracts';
+export interface CheckoutInput{organizationId:string;planCode:PlanCode;successUrl:string;cancelUrl:string}
+export interface BillingProvider{createCheckoutSession(input:CheckoutInput):Promise<{url:string;externalId:string}>;createCustomerPortalSession(customerId:string,returnUrl:string):Promise<{url:string}>;verifyAndParseWebhook(payload:string,signature:string):Promise<BillingEvent>}
+export interface BillingEvent{id:string;type:'CHECKOUT_COMPLETED'|'SUBSCRIPTION_CREATED'|'SUBSCRIPTION_UPDATED'|'SUBSCRIPTION_CANCELLED'|'INVOICE_PAID'|'INVOICE_PAYMENT_FAILED';organizationId:string;planCode?:PlanCode;subscriptionId?:string;customerId?:string;periodStart?:string;periodEnd?:string}
+export class BillingWebhookService{private processed=new Set<string>();async process(provider:string,event:BillingEvent,apply:(event:BillingEvent)=>Promise<void>){const key=`${provider}:${event.id}`;if(this.processed.has(key))return false;await apply(event);this.processed.add(key);return true}}
