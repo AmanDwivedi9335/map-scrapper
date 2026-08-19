@@ -1,0 +1,7 @@
+# Repository audit and Phase 3 architecture
+
+The pre-Phase-3 repository is a Vite/React Manifest V3 extension. Google Maps extraction remains entirely in `src/content/googleMaps`; the service worker relays typed messages, Dexie persists local jobs/leads/settings, and exporters operate locally. There was no server, cloud database, authentication, billing, or Phase 2 enrichment implementation to reuse. Phase 3 adds cloud contracts and domain services without changing the Maps adapter or making local extraction depend on cloud availability.
+
+The tenant boundary is `Organization`. API implementations construct `Principal` from an authenticated session and membership; a client-supplied organization identifier is never authorization. `src/saas` contains centralized RBAC, configurable entitlements, transactional credit semantics, tenant-safe idempotent imports, account health, and provider-neutral billing. `prisma/schema.prisma` is the persistence source of truth. Redis/BullMQ workers persist `Job`/`JobItem` and heartbeat before acknowledging queue work; maintenance requeues stale heartbeats.
+
+The extension cloud client chunks 250 rows, records its current batch in `chrome.storage.local`, attaches idempotency and extension-version headers, and preserves local functionality when cloud requests fail. Credentials come from browser authorization and are revocable short-lived extension sessions, not permanent API keys.
