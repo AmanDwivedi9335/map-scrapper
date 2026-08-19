@@ -5,6 +5,7 @@
   "description": "Extract and export business listings from your current Google Maps search.",
   "permissions": [
     "sidePanel",
+    "scripting",
     "storage",
     "tabs",
     "downloads"
@@ -28,9 +29,20 @@
         "https://www.google.com/maps/*"
       ],
       "js": [
-        "content.js"
+        "content-loader.js"
       ],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content.js",
+        "assets/*.js"
+      ],
+      "matches": [
+        "https://www.google.com/*"
+      ]
     }
   ]
 }
